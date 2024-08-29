@@ -8,7 +8,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="p-6">
+    <div className="h-full w-full p-6">
       {/* Tabs */}
       <div className="flex border-b-2 mb-6">
         <div className="px-4 py-2 cursor-pointer border-b-2 border-blue-500">Dashboard</div>
@@ -17,12 +17,12 @@ const Dashboard = () => {
 
       {/* Filters */}
       <div className="flex gap-4 mb-6">
-        <div className="bg-[#0284C74D] px-4 py-2 text-base rounded-lg">Date Range: Last 30 days</div>
+        <div className="bg-sky-500 px-4 py-2 text-base rounded-lg">Date Range: Last 30 days</div>
         <div className="flex items-center bg-[#EBEEF3] text-base px-4 py-2 rounded-xl">
           <input type="text" placeholder="Search" className="bg-transparent outline-none"/>
         </div>
-        <div className="bg-[#0284C74D] px-4 py-2 rounded-lg">Status: All</div>
-        <div className="bg-[#0284C74D] px-4 py-2 rounded-lg">Filter: location</div>
+        <div className="bg-sky-500 px-4 py-2 rounded-lg">Status: All</div>
+        <div className="bg-sky-500 px-4 py-2 rounded-lg">Filter: location</div>
       </div>
 
       {/* Status Cards */}
@@ -47,7 +47,7 @@ const Dashboard = () => {
 
       {/* Request Table */}
       <table className="w-full bg-white rounded-xl  shadow">
-    <thead className="  text-white bg-[#0284C7] text-base font-semibold text-left">
+    <thead className="  text-white bg-sky-500 text-base font-semibold text-left">
         <tr className=''>
         <th className="p-4 ">Title</th>
         <th className="p-4">Status</th>

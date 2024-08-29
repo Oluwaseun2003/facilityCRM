@@ -3,7 +3,7 @@ import React from 'react';
 const MaintenanceRequestForm: React.FC = () => {
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-6">Create Request</h2>
+      <h2 className="text-2xl font-semibold text-sky-500 mb-6">Create Request</h2>
       <form>
         <div className="mb-4">
           <label htmlFor="requested-by" className="block font-medium text-gray-700 mb-2">

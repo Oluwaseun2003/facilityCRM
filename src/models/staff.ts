@@ -14,5 +14,6 @@ export interface Staff {
     InternalAudit = 'InternalAudit',
     Finance = 'Finance',
     HeadOfDepartment = 'HeadOfDepartment', 
-    Executive = 'Executive', 
+    Executive = 'Executive',
+    name = "name", 
   }
