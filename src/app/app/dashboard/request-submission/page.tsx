@@ -2,106 +2,156 @@ import React from 'react';
 
 const MaintenanceRequestForm: React.FC = () => {
   return (
-    <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold text-sky-500 mb-6">Create Request</h2>
-      <form>
-        <div className="mb-4">
-          <label htmlFor="requested-by" className="block font-medium text-gray-700 mb-2">
-            Requested by
-          </label>
-          <input
-            type="text"
-            id="requested-by"
-            name="requested-by"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="department" className="block font-medium text-gray-700 mb-2">
-            Department
-          </label>
-          <input
-            type="text"
-            id="department"
-            name="department"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="request" className="block font-medium text-gray-700 mb-2">
-            Request
-          </label>
-          <input
-            type="text"
-            id="request"
-            name="request"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="location" className="block font-medium text-gray-700 mb-2">
-            Location
-          </label>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="description" className="block font-medium text-gray-700 mb-2">
-            Description
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            rows={4}
-          ></textarea>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="asset" className="block font-medium text-gray-700 mb-2">
-            Asset
-          </label>
-          <input
-            type="text"
-            id="asset"
-            name="asset"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="urgency-level" className="block font-medium text-gray-700 mb-2">
-            Urgency Level
-          </label>
-          <input
-            type="text"
-            id="urgency-level"
-            name="urgency-level"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-          />
-        </div>
-        <div className="border-2 border-dashed border-gray-300 p-6 text-center rounded-md">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-12 w-12 mx-auto text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 15a4 4 0 10-2-3.465A4.5 4.5 0 017.5 2c2.486 0 4.5 2.014 4.5 4.5S9.986 11 7.5 11H3zm0 0v2m0-2h9m-9 0H4m0 0v-9m0 0h9m0 0V4m-9 0H3m0 0v9"
+    <div>
+      <div className="px-4 ml-10 mb-8 py-2 border-b-2 border-gray-300">
+        <h1>New Maintenance Request</h1>
+      </div>
+      <div className="max-w-5xl mx-auto bg-white p-8 rounded-lg border-2 border-gray-300">
+        <h2 className="text-lg font-semibold text-sky-500 mb-6">Create Request</h2>
+        <form>
+          <div className="mb-4 flex items-center">
+            <label htmlFor="requested-by" className="w-1/4 font-medium text-gray-700 mr-4">
+              Requested by
+            </label>
+            <input
+              type="text"
+              id="requested-by"
+              name="requested-by"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
             />
-          </svg>
-          <span className="block mt-2 text-sm text-gray-600">
-            Drag image here or <a href="#" className="text-blue-500 underline">browse image</a>
-          </span>
+          </div>
+          <div className="mb-4 flex items-center">
+            <label htmlFor="department" className="w-1/4 font-medium text-gray-700 mr-4">
+              Department
+            </label>
+            <input
+              type="text"
+              id="department"
+              name="department"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
+          <div className="mb-4 flex items-center">
+            <label htmlFor="request" className="w-1/4 font-medium text-gray-700 mr-4">
+              Request
+            </label>
+            <input
+              type="text"
+              id="request"
+              name="request"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
+          <div className="mb-4 flex items-center">
+            <label htmlFor="location" className="w-1/4 font-medium text-gray-700 mr-4">
+              Location
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
+          <div className="mb-4 flex items-center">
+            <label htmlFor="description" className="w-1/4 font-medium text-gray-700 mr-4">
+              Description
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+              rows={4}
+            ></textarea>
+          </div>
+          <div className="mb-4 flex items-center">
+            <label htmlFor="asset" className="w-1/4 font-medium text-gray-700 mr-4">
+              Asset
+            </label>
+            <input
+              type="text"
+              id="asset"
+              name="asset"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
+          <div className="mb-4 flex items-center">
+            <label htmlFor="urgency-level" className="w-1/4 font-medium text-gray-700 mr-4">
+              Urgency Level
+            </label>
+            <input
+              type="text"
+              id="urgency-level"
+              name="urgency-level"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+            />
+          </div>
+
+          {/* Image Upload Section */}
+          <div className="mb-4 flex items-center">
+            <div className='w-1/4'>
+            <label htmlFor="image-upload" className="font-medium text-gray-700">
+              Image
+            </label>
+            </div>
+
+            <div className="border-2 border-dashed border-gray-300 w-full ml-16 p-6 text-center rounded-lg mt-2">
+            <svg
+  xmlns="http://www.w3.org/2000/svg"
+  className="h-12 w-12 mx-auto text-gray-400"
+  fill="none"
+  viewBox="0 0 48 48"
+  stroke="currentColor"
+>
+  <g>
+    <path
+      d="M36.496 34.167H11.44c-.404 0-.731-.327-.731-.731V14.564c0-.404.327-.731.731-.731h25.056c.404 0 .731.327.731.731v18.872c0 .404-.327.731-.731.731z"
+      stroke="#303030"
+      strokeWidth="0.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    <polyline
+      points="10.872 25.968 16.434 19.621 28.117 29.342 32.378 26.785 37.167 30.219"
+      stroke="#303030"
+      strokeWidth="0.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    <circle
+      cx="32.023"
+      cy="20.61"
+      r="1.345"
+      stroke="#303030"
+      strokeWidth="0.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  </g>
+</svg>
+              <span className="block mt-2 text-sm text-gray-600">
+                Drag image here or{' '}
+                <label
+                  htmlFor="image-upload"
+                  className="text-blue-500 underline cursor-pointer"
+                >
+                  browse image
+                </label>
+              </span>
+              <input
+                type="file"
+                id="image-upload"
+                name="image-upload"
+                accept="image/*"
+                className="hidden"
+              />
+            </div>
         </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

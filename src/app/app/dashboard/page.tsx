@@ -5,10 +5,15 @@ const Dashboard = () => {
     { title: 'Door', status: 'In Progress', location: 'Isle 2', asset: 'Door', requestedBy: 'Chi Joel', urgency: 'Critical' },
     { title: 'AC fix', status: 'In Progress', location: 'Ward 3', asset: 'Air Condition', requestedBy: 'Dami', urgency: 'Medium' },
     { title: 'AC fix', status: 'Completed', location: 'Ward 3', asset: 'Air Condition', requestedBy: 'Dami', urgency: 'Low' },
+    { title: 'Despencer fix', status: 'Completed', location: 'Ward 3', asset: 'Air Condition', requestedBy: 'Dami', urgency: 'Low' },
+    { title: 'Door fix', status: 'In Progress', location: 'Ward 5', asset: 'Air Condition', requestedBy: 'Seun', urgency: 'Low' },
+    { title: 'AC fix', status: 'Completed', location: 'Ward 3', asset: 'Air Condition', requestedBy: 'Dami', urgency: 'Low' },
+    { title: 'AC fix', status: 'Completed', location: 'Ward 3', asset: 'Air Condition', requestedBy: 'Dami', urgency: 'Low' },
+    { title: 'AC fix', status: 'Completed', location: 'Ward 3', asset: 'Air Condition', requestedBy: 'Dami', urgency: 'Low' },
   ];
 
   return (
-    <div className="h-full w-full p-6">
+    <div className="h-full w-full px-6">
       {/* Tabs */}
       <div className="flex border-b-2 mb-6">
         <div className="px-4 py-2 cursor-pointer border-b-2 border-blue-500">Dashboard</div>
@@ -16,13 +21,14 @@ const Dashboard = () => {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
-        <div className="bg-sky-500 px-4 py-2 text-base rounded-lg">Date Range: Last 30 days</div>
+      <div className="flex gap-8 mb-6">
+        <h3 className='text-xl font-semibold py-2'>Request Orders</h3>
+        <div className="bg-sky-300 px-4 py-2 text-base rounded-lg">Date Range: Last 30 days</div>
         <div className="flex items-center bg-[#EBEEF3] text-base px-4 py-2 rounded-xl">
           <input type="text" placeholder="Search" className="bg-transparent outline-none"/>
         </div>
-        <div className="bg-sky-500 px-4 py-2 rounded-lg">Status: All</div>
-        <div className="bg-sky-500 px-4 py-2 rounded-lg">Filter: location</div>
+        <div className="bg-sky-300 px-4 py-2 rounded-lg">Status: All</div>
+        <div className="bg-sky-300 px-4 py-2 rounded-lg">Filter: location</div>
       </div>
 
       {/* Status Cards */}
