@@ -7,33 +7,30 @@ import { ClipLoader } from "react-spinners";
 import { Popover, Transition } from "@headlessui/react";
 import Link, { type LinkProps } from "next/link";
 
-
 type Type = "button" | "submit" | "reset" | "link";
 type Color = "primary" | "secondary" | "white" | "outline" | "danger";
 type BaseButtonTypeProps = HTMLMotionProps<"button">;
 type BaseLinkTypeProps = LinkProps;
 
-
 type BaseButtonProps = {
-    icon?: ReactNode;
-    type?: Type;
-    text: string;
-    loading?: boolean;
-    hideText?: boolean;
-    color?: Color;
-    className?: string;
-    badgeNumber?: number;
-    position?: "icon-first" | "icon-last";
-  } & (BaseButtonTypeProps | BaseLinkTypeProps);
-  
-  const motionProps = {
-    initial: {
-      boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)",
-    },
-    whileHover: { scale: 1.01, boxShadow: "0 12px 18px -3px rgb(0 0 0 / 0.1)" },
-    whileTap: { scale: 0.99, boxShadow: "0 8px 12px -2px rgb(0 0 0 / 0.1)" },
-  };
+  icon?: ReactNode;
+  type?: Type;
+  text: string;
+  loading?: boolean;
+  hideText?: boolean;
+  color?: Color;
+  className?: string;
+  badgeNumber?: number;
+  position?: "icon-first" | "icon-last";
+} & (BaseButtonTypeProps | BaseLinkTypeProps);
 
+const motionProps = {
+  initial: {
+    boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)",
+  },
+  whileHover: { scale: 1.01, boxShadow: "0 12px 18px -3px rgb(0 0 0 / 0.1)" },
+  whileTap: { scale: 0.99, boxShadow: "0 8px 12px -2px rgb(0 0 0 / 0.1)" },
+};
 
 export const BaseButton = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
@@ -51,19 +48,19 @@ export const BaseButton = forwardRef<
     hideText = false,
     ...props
   },
-  ref,
+  ref
 ) {
   const classes = clsx(
     "relative flex h-10 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md border px-3 py-2 text-sm font-semibold xs:text-base sm:h-12 sm:px-5 sm:py-3 disabled:bg-gray-500 disabled:border-gray-500 disabled:cursor-not-allowed [&>span]:hover:opacity-100",
     {
       "border-bg-white text-white": color === "outline",
-      "border-sky-600 bg-sky-600 text-white": color === "primary",
+      "border-sky-600 bg-blue-500 text-white": color === "primary",
       "border-red-500 bg-red-500 text-white": color === "danger",
       "border-black bg-black text-white": color === "secondary",
       "border-sky-600 bg-white text-sky-600": color === "white",
     },
     { "flex-row-reverse": position === "icon-first" },
-    className,
+    className
   );
   if (type === "link") {
     return (
@@ -71,8 +68,7 @@ export const BaseButton = forwardRef<
         {...(props as BaseLinkTypeProps)}
         {...motionProps}
         ref={ref as ForwardedRef<HTMLAnchorElement>}
-        className={classes}
-      >
+        className={classes}>
         {!hideText && text}
         {icon}
         {hideText && (
@@ -90,8 +86,7 @@ export const BaseButton = forwardRef<
       {...(props as BaseButtonTypeProps)}
       ref={ref as ForwardedRef<HTMLButtonElement>}
       type={type}
-      className={classes}
-    >
+      className={classes}>
       {!loading && (
         <>
           {!hideText && text}

@@ -1,5 +1,5 @@
-import SideBar from "@/src/components/UI/SideNav";
-import TopNav from "@/src/components/UI/TopNav";
+import SideBar from "@/src/components/SideNav";
+import TopNav from "@/src/components/TopNav";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

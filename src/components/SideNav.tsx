@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import { Menu, MenuItem, Sidebar, SubMenu } from "react-pro-sidebar";
@@ -6,11 +6,22 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { clsx } from "clsx";
 
-import Logo from "./Logo";
+import Logo from "./UI/Logo";
 // import Logo from "@/public/svgs/logo.svg"
-import { AiOutlineAudit, AiOutlineBell, AiOutlineDashboard, AiOutlineForm, AiOutlineProfile } from "react-icons/ai";
+import {
+  AiOutlineAudit,
+  AiOutlineBell,
+  AiOutlineDashboard,
+  AiOutlineForm,
+  AiOutlineProfile,
+} from "react-icons/ai";
 import { FaUserTie, FaUserShield } from "react-icons/fa";
-import { BiGitBranch, BiLogOut, BiMessageAltDetail, BiTask } from "react-icons/bi";
+import {
+  BiGitBranch,
+  BiLogOut,
+  BiMessageAltDetail,
+  BiTask,
+} from "react-icons/bi";
 
 // Define types for navLinks
 interface NavLink {
@@ -95,14 +106,10 @@ export default function SideBar(): JSX.Element {
       }}
       onMouseLeave={() => {
         setCollapsed(true);
-      }}
-    >
+      }}>
       <div className="m-4 block w-full">
         {collapsed ? (
-          <Logo
-            size="mini"
-            className="[&>img]:h-[39px] [&>img]:w-auto"
-          />
+          <Logo size="mini" className="[&>img]:h-[39px] [&>img]:w-auto" />
         ) : (
           <Logo size="full" />
         )}
@@ -116,16 +123,14 @@ export default function SideBar(): JSX.Element {
                 color: "#0173B1",
               },
             },
-          }}
-        >
+          }}>
           {navLinks.map((link) =>
             link.subs ? (
               <SubMenu
                 key={link.href}
                 icon={link.icon}
                 label={link.title}
-                component={<Link href="#" />}
-              >
+                component={<Link href="#" />}>
                 {link.subs.map((sub) => (
                   <MenuItem
                     key={sub.href}
@@ -133,8 +138,7 @@ export default function SideBar(): JSX.Element {
                     className={clsx(pathname === sub.href && "bg-blue-200")}
                     component={
                       <Link href={sub.href} className="!h-9 !text-sm" />
-                    }
-                  >
+                    }>
                     {sub.title}
                   </MenuItem>
                 ))}
@@ -144,17 +148,15 @@ export default function SideBar(): JSX.Element {
                 key={link.href}
                 icon={link.icon}
                 className={clsx(pathname === link.href && "bg-blue-200")}
-                component={<Link href={link.href} />}
-              >
+                component={<Link href={link.href} />}>
                 {link.title}
               </MenuItem>
-            ),
+            )
           )}
           <MenuItem
             icon={<BiLogOut className="h-4 w-4 shrink-0 text-red-500" />}
             className="bg-red-100"
-            component={<Link href="/login" />}
-          >
+            component={<Link href="/login" />}>
             <span className="text-red-500">Logout</span>
           </MenuItem>
         </Menu>
