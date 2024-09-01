@@ -1,14 +1,17 @@
-export interface Quotation {
-    id: string;
-    vendorId: string;
-    requestId: string;
-    items: QuotationItem[];
-    totalPrice: number;
-    createdAt: Date;
-  }
-  
-  export interface QuotationItem {
-    description: string;
-    quantity: number;
-    unitPrice: number;
-  }
+export type Quotation = {
+  id: string;
+  clientName: string;
+  status: string;
+  date: string;
+  amount: string;
+  overview: {
+    subject: string;
+    clientName: string;
+    status: string;
+    requestNumber: string;
+    date: string;
+    creator: string;
+    terms: string;
+    productName: string;
+  };
+};

@@ -95,7 +95,7 @@ const AuditLogs = () => {
       {/* Tabs */}
       <div className="flex border-b-2 mb-6">
         <div
-          className={`px-4 py-2 cursor-pointer ${
+          className={`px-4 py-2 text-lg font-bold cursor-pointer ${
             activeTab === "Audit" ? "border-b-2 border-blue-500" : ""
           }`}
           onClick={() => setActiveTab("Audit")}
@@ -103,7 +103,7 @@ const AuditLogs = () => {
           Audit
         </div>
         <div
-          className={`px-4 py-2 cursor-pointer ${
+          className={`px-4 py-2 text-lg font-bold cursor-pointer ${
             activeTab === "Logs" ? "border-b-2 border-blue-500" : ""
           }`}
           onClick={() => setActiveTab("Logs")}

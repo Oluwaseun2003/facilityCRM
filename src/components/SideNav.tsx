@@ -55,12 +55,12 @@ export const navLinks: NavLink[] = [
   {
     title: "Notification System",
     icon: <AiOutlineBell className="h-4 w-4 text-sky-600" />,
-    href: "/app/notifications",
+    href: "/app/dashboard/notifications",
   },
   {
     title: "Quotation Management",
     icon: <AiOutlineProfile className="h-4 w-4 text-sky-600" />,
-    href: "/app/quotation-management",
+    href: "/app/dashboard/quotation-management",
   },
   {
     title: "Approval Process",

@@ -6,7 +6,7 @@ import { getStatusStyle } from "@/src/utils/styles/styles";
 import { type ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import React from "react";
 
-const Dashboard = () => {
+const Workflow = () => {
   const columnHelper = createColumnHelper<IRequest>();
 
   const requestData = [
@@ -163,4 +163,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Workflow;

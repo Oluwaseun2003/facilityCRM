@@ -123,7 +123,7 @@ const RequestSummary = () => {
     <div className="h-full w-full px-6">
       {/* Tabs */}
       <div className="flex border-b-2 mb-6">
-        <div className="px-4 py-2 text-lg cursor-pointer border-b-2 border-blue-500">
+        <div className="px-4 py-2 text-lg font-bold cursor-pointer border-b-2 border-blue-500">
           Request
         </div>
       </div>
