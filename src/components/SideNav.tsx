@@ -40,7 +40,7 @@ export const navLinks: NavLink[] = [
   {
     title: "Workflow Management",
     icon: <BiGitBranch className="h-4 w-4 text-sky-600" />,
-    href: "/app/workflow-management",
+    href: "/app/dashboard/workflow-management",
   },
   {
     title: "Dashboard and Reporting",
@@ -70,11 +70,7 @@ export const navLinks: NavLink[] = [
   {
     title: "Audit Trail and Logs",
     icon: <AiOutlineAudit className="h-4 w-4 text-sky-600" />,
-    href: "/app/audit-logs",
-    subs: [
-      { title: "Sub Audit 1", href: "/app/audit-logs/sub1" },
-      { title: "Sub Audit 2", href: "/app/audit-logs/sub2" },
-    ],
+    href: "/app/dashboard/audit-logs",
   },
   {
     title: "Comments and Corrections",
@@ -84,12 +80,12 @@ export const navLinks: NavLink[] = [
   {
     title: "Staff and Management",
     icon: <FaUserTie className="h-4 w-4 text-sky-600" />,
-    href: "/app/staff-management",
+    href: "/app/dashboard/staff-management",
   },
   {
     title: "Request Summary",
     icon: <FaUserShield className="h-4 w-4 text-sky-600" />,
-    href: "/app/request-summary",
+    href: "/app/dashboard/request-summary",
   },
 ];
 

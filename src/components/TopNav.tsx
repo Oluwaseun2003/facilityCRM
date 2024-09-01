@@ -11,10 +11,12 @@ const TopNav = (): JSX.Element => {
   const getPageTitle = (path: string) => {
     const pageMap: Record<string, string> = {
       '/app/dashboard': 'Dashboard',
-      '/app/workflow-management': 'Workflow Management',
+      '/app/dashboard/workflow-management': 'Workflow Management',
       '/app/dashboard/request-submission': 'Request Submission',
       '/app/maintenance-request': 'Maintenance Request',
-      // Add more mappings for other routes
+      '/app/dashboard/audit-logs': 'Audit Trail and Logs',
+      '/app/dashboard/request-summary': 'Request Summary',
+      '/app/dashboard/staff-management': 'Staff and Management',
     };
     return pageMap[path] || 'Unknown Page';
   };

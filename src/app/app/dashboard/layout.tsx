@@ -4,7 +4,7 @@ import TopNav from "@/src/components/TopNav";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative flex h-screen flex-col">
-      <div className="flex-none">
+      <div className="flex-none ml-[-2rem]">
         <TopNav />
       </div>
       <div className="relative flex flex-1">
