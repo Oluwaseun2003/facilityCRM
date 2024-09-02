@@ -1,9 +1,12 @@
+import { IBranch } from "./branch";
+
 export interface Staff {
     id: string;
     email: string;
     firstName: string;
     lastName: string;
     role: StaffRole; 
+    branch?: IBranch["name"];
     department?: string; 
   }
   

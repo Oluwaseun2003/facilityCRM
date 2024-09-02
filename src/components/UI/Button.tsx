@@ -51,12 +51,12 @@ export const BaseButton = forwardRef<
   ref
 ) {
   const classes = clsx(
-    "relative flex h-10 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md border px-3 py-2 text-sm font-semibold xs:text-base sm:h-12 sm:px-5 sm:py-3 disabled:bg-gray-500 disabled:border-gray-500 disabled:cursor-not-allowed [&>span]:hover:opacity-100",
+    "relative flex h-12 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg border px-3 py-2 text-sm font-semibold xs:text-base sm:h-12 sm:px-5 sm:py-3 disabled:bg-gray-500 disabled:border-gray-500 disabled:cursor-not-allowed [&>span]:hover:opacity-100",
     {
       "border-bg-white text-white": color === "outline",
       "border-sky-600 bg-blue-500 text-white": color === "primary",
       "border-red-500 bg-red-500 text-white": color === "danger",
-      "border-black bg-black text-white": color === "secondary",
+      "border-sky-300 bg-sky-300 text-black": color === "secondary",
       "border-sky-600 bg-white text-sky-600": color === "white",
     },
     { "flex-row-reverse": position === "icon-first" },
