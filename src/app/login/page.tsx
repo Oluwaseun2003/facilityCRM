@@ -10,9 +10,14 @@ import { loginSchema } from "@/src/validation/auth";
 import Input from "@/src/Forms/Input";
 import { BaseButton } from "@/src/components/UI/Button";
 import Select from "@/src/Forms/Select";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const router = useRouter();
+  const navigateToPage = () => {
+    router.push("/app/dashboard"); // Navigates to /about page
+  };
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -23,7 +28,7 @@ const LoginPage = () => {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(loginSchema),
+    //resolver: yupResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -33,9 +38,7 @@ const LoginPage = () => {
       },
     },
   });
-  const onSubmit = async (data: { email: string }): Promise<void> => {
-    alert("hello");
-  };
+  const onSubmit = async (data: { email: string }): Promise<void> => {};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -157,37 +160,26 @@ const LoginPage = () => {
               />
             </div>
             <div className="mb-4 relative w-full ">
-              <Controller
-                name="department"
-                control={control}
-                render={({ field: { onChange, value, onBlur } }) => (
-                  <Select
-                    height="60px"
-                    width="100%"
-                    label="Department"
-                    value={value}
-                    onChange={(selectedOption) => {
-                      onChange(selectedOption);
-                    }}
-                    onBlur={onBlur}
-                    options={[
-                      {
-                        value: "Procurement Department",
-                        label: "Procurement Department",
-                      },
-                      {
-                        value: "Finance Department",
-                        label: "Finance Department",
-                      },
-                    ]}
-                    validationError={errors?.department?.value}
-                  />
-                )}
-              />
+              <div className="mb-4 relative">
+                <label
+                  htmlFor="department"
+                  className="block text-gray-700 font-semibold mb-2">
+                  Select Department
+                </label>
+                <select
+                  id="department"
+                  className="w-full p-3 border border-gray-300 text-black rounded-lg appearance-none">
+                  <option>Select Department </option>
+                  <option>Procurement Department</option>
+                  <option>Finance Department</option>
+                  {/* Add more departments here */}
+                </select>
+                <FiChevronDown className="absolute right-3 top-12 text-gray-500 pointer-events-none" />
+              </div>
             </div>
 
             <BaseButton
-              // onClick={handleProceed}
+              onClick={navigateToPage}
               text="Login"
               type="submit"
               color="primary"

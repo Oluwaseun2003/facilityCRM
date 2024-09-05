@@ -19,6 +19,7 @@ const TopNav = (): JSX.Element => {
       "/app/dashboard/request-summary": "Request Summary",
       "/app/dashboard/staff-management": "Staff and Management",
       "/app/dashboard/approval-process": "Approval Process",
+      "/app/dashboard/comments-corrections": "Comments Corrections",
     };
     return pageMap[path] || "Unknown Page";
   };

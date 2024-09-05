@@ -75,7 +75,7 @@ export const navLinks: NavLink[] = [
   {
     title: "Comments and Corrections",
     icon: <BiMessageAltDetail className="h-4 w-4 text-sky-600" />,
-    href: "/app/comments-corrections",
+    href: "/app/dashboard/comments-corrections",
   },
   {
     title: "Staff and Management",
@@ -95,7 +95,7 @@ export default function SideBar(): JSX.Element {
 
   return (
     <Sidebar
-      className="!absolute left-0 top-0 z-10 h-screen shrink-0 bg-white text-black shadow-lg duration-150 [&>div]:overflow-y-hidden"
+      className="!absolute left-0 top-0 z-999 h-screen shrink-0 bg-white text-black shadow-lg duration-150 [&>div]:overflow-y-hidden"
       collapsed={collapsed}
       onMouseEnter={() => {
         setCollapsed(false);
