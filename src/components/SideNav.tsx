@@ -65,7 +65,7 @@ export const navLinks: NavLink[] = [
   {
     title: "Approval Process",
     icon: <BiTask className="h-4 w-4 text-sky-600" />,
-    href: "/app/approval-process",
+    href: "/app/dashboard/approval-process",
   },
   {
     title: "Audit Trail and Logs",
