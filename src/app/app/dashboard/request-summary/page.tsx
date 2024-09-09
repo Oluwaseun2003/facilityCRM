@@ -4,9 +4,13 @@ import Card from "@/src/components/UI/Cards";
 import { IRequest } from "@/src/interfaces/request";
 import { getStatusStyle } from "@/src/utils/styles/styles";
 import { type ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import React from "react";
+import React, { useState } from "react";
+import RequestDetails from "@/src/modals/RequestModal"; // Import the modal
 
 const RequestSummary = () => {
+  const [isModalOpen, setModalOpen] = useState(false); // Manage modal state
+  const [selectedRequest, setSelectedRequest] = useState<IRequest | null>(null); // Store selected request
+
   const columnHelper = createColumnHelper<IRequest>();
 
   const requestData = [
@@ -75,31 +79,32 @@ const RequestSummary = () => {
       urgency: "Low",
     },
   ];
+
   const columns: ColumnDef<IRequest, any>[] = [
     columnHelper.accessor("title", {
-      header: () => "title",
+      header: () => "Title",
     }),
     columnHelper.accessor("status", {
       header: () => "Status",
       cell: (info) => {
         const style = getStatusStyle(info.getValue());
-        return <div style={style}> {info.getValue()}</div>;
+        return <div style={style}>{info.getValue()}</div>;
       },
     }),
     columnHelper.accessor("location", {
-      header: () => "location",
+      header: () => "Location",
     }),
     columnHelper.accessor("asset", {
-      header: () => "asset",
+      header: () => "Asset",
     }),
     columnHelper.accessor("requestedBy", {
-      header: () => "requested By",
+      header: () => "Requested By",
     }),
     columnHelper.accessor("urgency", {
-      header: () => "Urgency level",
+      header: () => "Urgency Level",
       cell: (info) => {
         const style = getStatusStyle(info.getValue());
-        return <div style={style}> {info.getValue()}</div>;
+        return <div style={style}>{info.getValue()}</div>;
       },
     }),
     columnHelper.accessor((rowData) => rowData, {
@@ -110,9 +115,12 @@ const RequestSummary = () => {
           className="flex gap-3 items-center justify-center"
           onClick={(e) => {
             e.stopPropagation();
-          }}>
+            setSelectedRequest(info.row.original); // Set the selected request
+            setModalOpen(true); // Open the modal
+          }}
+        >
           <div className="bg-[#0284C7] px-2 rounded-full p-1">
-            <h3 className="text-white ">View</h3>
+            <h3 className="text-white">View</h3>
           </div>
         </div>
       ),
@@ -130,11 +138,9 @@ const RequestSummary = () => {
 
       {/* Filters */}
       <div className="flex gap-8 mb-6">
-      <h3 className="text-xl font-semibold py-2">Total Request:{`500`}</h3>
+        <h3 className="text-xl font-semibold py-2">Total Request: {`500`}</h3>
 
-        <div className="bg-sky-300 px-4 py-2 text-base rounded-lg">
-          Date Range: Last 30 days
-        </div>
+        <div className="bg-sky-300 px-4 py-2 text-base rounded-lg">Date Range: Last 30 days</div>
         <div className="flex items-center bg-[#EBEEF3] text-base px-4 py-2 rounded-xl">
           <input
             type="text"
@@ -143,7 +149,7 @@ const RequestSummary = () => {
           />
         </div>
         <div className="bg-sky-300 px-4 py-2 rounded-lg">Status: All</div>
-        <div className="bg-sky-300 px-4 py-2 rounded-lg">Filter: location</div>
+        <div className="bg-sky-300 px-4 py-2 rounded-lg">Filter: Location</div>
       </div>
 
       {/* Request Table */}
@@ -151,10 +157,16 @@ const RequestSummary = () => {
         data={requestData ?? []}
         error={false}
         loading={false}
-        // onRowClick={(rowData) => {
-        //   //  setSingleDisplay(true);
-        // }}
-        columns={columns as Array<ColumnDef<IRequest>>}></Table>
+        columns={columns as Array<ColumnDef<IRequest>>}
+      />
+
+      {/* Modal for request details */}
+      {isModalOpen && selectedRequest && (
+        <RequestDetails
+          request={selectedRequest}
+          closeModal={() => setModalOpen(false)} // Close the modal
+        />
+      )}
     </div>
   );
 };

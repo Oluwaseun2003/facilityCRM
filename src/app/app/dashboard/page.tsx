@@ -4,12 +4,18 @@ import Card from "@/src/components/UI/Cards";
 import { IRequest } from "@/src/interfaces/request";
 import { getStatusStyle } from "@/src/utils/styles/styles";
 import { type ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import React from "react";
+import React, { useState } from "react";
+import RequestDetails from "@/src/modals/RequestModal";
+// import RequestDetails from "@/src/modals/RequestsModal";
+
 
 const Dashboard = () => {
+  const [isModalOpen, setModalOpen] = useState(false); // Manage modal state
+  const [selectedRequest, setSelectedRequest] = useState<IRequest | null>(null); // Manage selected request data
+
   const columnHelper = createColumnHelper<IRequest>();
 
-  const requestData = [
+  const requestData: IRequest[] = [
     {
       title: "Door",
       status: "In Progress",
@@ -17,6 +23,29 @@ const Dashboard = () => {
       asset: "Door",
       requestedBy: "Chi Joel",
       urgency: "Critical",
+      image: "",
+      estimatedTime: "12/04/24",
+      cost: "",
+      supplier: "",
+      supplierNum: "",
+      supplierEmail: "",
+      quotation: {
+        id: "",
+        clientName: "",
+        status: "",
+        date: "",
+        amount: "",
+        overview: {
+          subject: "",
+          clientName: "",
+          status: "",
+          requestNumber: "",
+          date: "",
+          creator: "",
+          terms: "",
+          productName: ""
+        }
+      }
     },
     {
       title: "AC fix",
@@ -25,14 +54,29 @@ const Dashboard = () => {
       asset: "Air Condition",
       requestedBy: "Dami",
       urgency: "Medium",
-    },
-    {
-      title: "AC fix",
-      status: "Completed",
-      location: "Ward 3",
-      asset: "Air Condition",
-      requestedBy: "Dami",
-      urgency: "Low",
+      image: "",
+      estimatedTime: "12/04/24",
+      cost: "",
+      supplier: "",
+      supplierNum: "",
+      supplierEmail: "",
+      quotation: {
+        id: "",
+        clientName: "",
+        status: "",
+        date: "",
+        amount: "",
+        overview: {
+          subject: "",
+          clientName: "",
+          status: "",
+          requestNumber: "",
+          date: "",
+          creator: "",
+          terms: "",
+          productName: ""
+        }
+      }
     },
     {
       title: "Despencer fix",
@@ -41,43 +85,35 @@ const Dashboard = () => {
       asset: "Air Condition",
       requestedBy: "Dami",
       urgency: "Low",
-    },
-    {
-      title: "Door fix",
-      status: "In Progress",
-      location: "Ward 5",
-      asset: "Air Condition",
-      requestedBy: "Seun",
-      urgency: "Low",
-    },
-    {
-      title: "AC fix",
-      status: "Completed",
-      location: "Ward 3",
-      asset: "Air Condition",
-      requestedBy: "Dami",
-      urgency: "Low",
-    },
-    {
-      title: "AC fix",
-      status: "Completed",
-      location: "Ward 3",
-      asset: "Air Condition",
-      requestedBy: "Dami",
-      urgency: "Low",
-    },
-    {
-      title: "AC fix",
-      status: "Completed",
-      location: "Ward 3",
-      asset: "Air Condition",
-      requestedBy: "Dami",
-      urgency: "Low",
+      image: "",
+      estimatedTime: "12/04/24",
+      cost: "",
+      supplier: "",
+      supplierNum: "",
+      supplierEmail: "",
+      quotation: {
+        id: "",
+        clientName: "",
+        status: "",
+        date: "",
+        amount: "",
+        overview: {
+          subject: "",
+          clientName: "",
+          status: "",
+          requestNumber: "",
+          date: "",
+          creator: "",
+          terms: "",
+          productName: ""
+        }
+      }
     },
   ];
+
   const columns: ColumnDef<IRequest, any>[] = [
     columnHelper.accessor("title", {
-      header: () => "title",
+      header: () => "Title",
     }),
     columnHelper.accessor("status", {
       header: () => "Status",
@@ -87,16 +123,16 @@ const Dashboard = () => {
       },
     }),
     columnHelper.accessor("location", {
-      header: () => "location",
+      header: () => "Location",
     }),
     columnHelper.accessor("asset", {
-      header: () => "asset",
+      header: () => "Asset",
     }),
     columnHelper.accessor("requestedBy", {
-      header: () => "requested By",
+      header: () => "Requested By",
     }),
     columnHelper.accessor("urgency", {
-      header: () => "Urgency level",
+      header: () => "Urgency Level",
       cell: (info) => {
         const style = getStatusStyle(info.getValue());
         return <div style={style}> {info.getValue()}</div>;
@@ -106,14 +142,17 @@ const Dashboard = () => {
       id: "actions",
       header: () => "Actions",
       cell: (info) => (
-        <div
-          className="flex gap-3 items-center justify-center"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}>
-          <div className="bg-[#0284C7] px-2 rounded-full p-1">
-            <h3 className="text-white ">View</h3>
-          </div>
+        <div className="flex gap-3 items-center justify-center">
+          <button
+            className="bg-[#0284C7] px-2 rounded-full p-1 text-white"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedRequest(info.row.original);
+              setModalOpen(true);
+            }}
+          >
+            View
+          </button>
         </div>
       ),
     }),
@@ -150,8 +189,8 @@ const Dashboard = () => {
 
       {/* Status Cards */}
       <div className="grid grid-cols-3 gap-4 mb-6">
-        <Card title="open" number="2" />
-        <Card title="in Progress" number="2" />
+        <Card title="Open" number="2" />
+        <Card title="In Progress" number="2" />
         <Card title="On Hold" number="0" />
         <Card title="Completed" number="1" />
       </div>
@@ -161,38 +200,16 @@ const Dashboard = () => {
         data={requestData ?? []}
         error={false}
         loading={false}
-        // onRowClick={(rowData) => {
-        //   //  setSingleDisplay(true);
-        // }}
-        columns={columns as Array<ColumnDef<IRequest>>}></Table>
-      {/* <table className="w-full bg-white rounded-xl  shadow">
-    <thead className="  text-white bg-sky-500 text-base font-semibold text-left">
-        <tr className=''>
-        <th className="p-4 ">Title</th>
-        <th className="p-4">Status</th>
-        <th className="p-4">Location</th>
-        <th className="p-4">Asset</th>
-        <th className="p-4">Requested by</th>
-        <th className="p-4">Urgency level</th>
-        <th className="p-4">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {requestData.map((request, index) => (
-        <tr key={index} className="hover:bg-gray-50">
-            <td className="p-4 border-b">{request.title}</td>
-            <td className={`p-4 border-b ${request.status === 'In Progress' ? 'text-blue-500' : request.status === 'Completed' ? 'text-green-500' : ''}`}>{request.status}</td>
-            <td className="p-4 border-b">{request.location}</td>
-            <td className="p-4 border-b">{request.asset}</td>
-            <td className="p-4 border-b">{request.requestedBy}</td>
-            <td className={`p-4 border-b ${request.urgency === 'Critical' ? 'text-red-500' : request.urgency === 'Medium' ? 'text-orange-500' : 'text-green-500'}`}>{request.urgency}</td>
-            <td className="p-4 border-b">
-            <button className="px-4 py-2 bg-blue-500 text-white rounded">View</button>
-            </td>
-        </tr>
-        ))}
-    </tbody>
-    </table> */}
+        columns={columns as Array<ColumnDef<IRequest>>}
+      />
+
+      {/* Modal Component */}
+      {isModalOpen && selectedRequest && (
+        <RequestDetails 
+          request={selectedRequest} 
+          closeModal={() => setModalOpen(false)}
+        />
+      )}
     </div>
   );
 };
