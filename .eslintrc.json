@@ -5,6 +5,10 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",  // Point this to your tsconfig.json
+    "tsconfigRootDir": "./"
+  },
   "plugins": ["@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-unsafe-argument": "warn",

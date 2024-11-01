@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import Table from "@/src/components/Tables/Tables";
-import { Imanagement, Staff, StaffRole } from "@/src/models/staff";
+import Table from "../../../../components/Tables/Tables";
+import { Imanagement, Staff, StaffRole } from "../../../../models/staff";
 import { ColumnDef } from "@tanstack/react-table";
-import { StaffDetailsModal } from "@/src/modals/StaffModal";
-// import StaffDetailsModal from "@/src/modals/StaffModal";
-import ManagementDetailsModal from "@/src/modals/ManagementModal";
+import { StaffDetailsModal } from "../../../../modals/StaffModal";
+import ManagementDetailsModal from "../../../../modals/ManagementModal";
 
 const StaffManagementPage = () => {
   const [activeTab, setActiveTab] = useState("Staff");

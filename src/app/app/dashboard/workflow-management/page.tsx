@@ -1,14 +1,14 @@
 "use client";
-import Table from "@/src/components/Tables/Tables";
-import Card from "@/src/components/UI/Cards";
-import { IRequest } from "@/src/interfaces/request";
-import { getStatusStyle } from "@/src/utils/styles/styles";
+// import Table from "@/src/components/Tables/Tables";
+import Table from "../../../../components/Tables/Tables";
+import Card from "../../../../components/UI/Cards";
+import { IRequest } from "../../../../interfaces/request";
+import { getStatusStyle } from "../../../../utils/styles/styles";
 import { Suspense } from "react";
 import { type ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import React, { useState } from "react";
-import RequestDetails from "@/src/modals/RequestModal";
-import { CardsSkeleton } from "@/src/components/UI/skeletons";
-// import RequestDetails from "@/src/modals/RequestsModal";
+import RequestDetails from "../../../../modals/RequestModal";
+import { CardsSkeleton } from "../../../../components/UI/skeletons";
 
 
 const WorkFlow = () => {
