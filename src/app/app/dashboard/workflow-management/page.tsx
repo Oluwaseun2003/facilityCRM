@@ -3,13 +3,21 @@ import Table from "@/src/components/Tables/Tables";
 import Card from "@/src/components/UI/Cards";
 import { IRequest } from "@/src/interfaces/request";
 import { getStatusStyle } from "@/src/utils/styles/styles";
+import { Suspense } from "react";
 import { type ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import React from "react";
+import React, { useState } from "react";
+import RequestDetails from "@/src/modals/RequestModal";
+import { CardsSkeleton } from "@/src/components/UI/skeletons";
+// import RequestDetails from "@/src/modals/RequestsModal";
 
-const Workflow = () => {
+
+const WorkFlow = () => {
+  const [isModalOpen, setModalOpen] = useState(false); // Manage modal state
+  const [selectedRequest, setSelectedRequest] = useState<IRequest | null>(null); // Manage selected request data
+
   const columnHelper = createColumnHelper<IRequest>();
 
-  const requestData = [
+  const requestData: IRequest[] = [
     {
       title: "Door",
       status: "In Progress",
@@ -17,6 +25,29 @@ const Workflow = () => {
       asset: "Door",
       requestedBy: "Chi Joel",
       urgency: "Critical",
+      image: "",
+      estimatedTime: "12/04/24",
+      cost: "",
+      supplier: "",
+      supplierNum: "",
+      supplierEmail: "",
+      quotation: {
+        id: "",
+        clientName: "",
+        status: "",
+        date: "",
+        amount: "",
+        overview: {
+          subject: "",
+          clientName: "",
+          status: "",
+          requestNumber: "",
+          date: "",
+          creator: "",
+          terms: "",
+          productName: ""
+        }
+      }
     },
     {
       title: "AC fix",
@@ -25,14 +56,29 @@ const Workflow = () => {
       asset: "Air Condition",
       requestedBy: "Dami",
       urgency: "Medium",
-    },
-    {
-      title: "AC fix",
-      status: "Completed",
-      location: "Ward 3",
-      asset: "Air Condition",
-      requestedBy: "Dami",
-      urgency: "Low",
+      image: "",
+      estimatedTime: "12/04/24",
+      cost: "",
+      supplier: "",
+      supplierNum: "",
+      supplierEmail: "",
+      quotation: {
+        id: "",
+        clientName: "",
+        status: "",
+        date: "",
+        amount: "",
+        overview: {
+          subject: "",
+          clientName: "",
+          status: "",
+          requestNumber: "",
+          date: "",
+          creator: "",
+          terms: "",
+          productName: ""
+        }
+      }
     },
     {
       title: "Despencer fix",
@@ -41,43 +87,35 @@ const Workflow = () => {
       asset: "Air Condition",
       requestedBy: "Dami",
       urgency: "Low",
-    },
-    {
-      title: "Door fix",
-      status: "In Progress",
-      location: "Ward 5",
-      asset: "Air Condition",
-      requestedBy: "Seun",
-      urgency: "Low",
-    },
-    {
-      title: "AC fix",
-      status: "Completed",
-      location: "Ward 3",
-      asset: "Air Condition",
-      requestedBy: "Dami",
-      urgency: "Low",
-    },
-    {
-      title: "AC fix",
-      status: "Completed",
-      location: "Ward 3",
-      asset: "Air Condition",
-      requestedBy: "Dami",
-      urgency: "Low",
-    },
-    {
-      title: "AC fix",
-      status: "Completed",
-      location: "Ward 3",
-      asset: "Air Condition",
-      requestedBy: "Dami",
-      urgency: "Low",
+      image: "",
+      estimatedTime: "12/04/24",
+      cost: "",
+      supplier: "",
+      supplierNum: "",
+      supplierEmail: "",
+      quotation: {
+        id: "",
+        clientName: "",
+        status: "",
+        date: "",
+        amount: "",
+        overview: {
+          subject: "",
+          clientName: "",
+          status: "",
+          requestNumber: "",
+          date: "",
+          creator: "",
+          terms: "",
+          productName: ""
+        }
+      }
     },
   ];
+
   const columns: ColumnDef<IRequest, any>[] = [
     columnHelper.accessor("title", {
-      header: () => "title",
+      header: () => "Title",
     }),
     columnHelper.accessor("status", {
       header: () => "Status",
@@ -87,16 +125,16 @@ const Workflow = () => {
       },
     }),
     columnHelper.accessor("location", {
-      header: () => "location",
+      header: () => "Location",
     }),
     columnHelper.accessor("asset", {
-      header: () => "asset",
+      header: () => "Asset",
     }),
     columnHelper.accessor("requestedBy", {
-      header: () => "requested By",
+      header: () => "Requested By",
     }),
     columnHelper.accessor("urgency", {
-      header: () => "Urgency level",
+      header: () => "Urgency Level",
       cell: (info) => {
         const style = getStatusStyle(info.getValue());
         return <div style={style}> {info.getValue()}</div>;
@@ -106,14 +144,17 @@ const Workflow = () => {
       id: "actions",
       header: () => "Actions",
       cell: (info) => (
-        <div
-          className="flex gap-3 items-center justify-center"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}>
-          <div className="bg-[#0284C7] px-2 rounded-full p-1">
-            <h3 className="text-white ">View</h3>
-          </div>
+        <div className="flex gap-3 items-center justify-center">
+          <button
+            className="bg-[#0284C7] px-2 rounded-full p-1 text-white"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedRequest(info.row.original);
+              setModalOpen(true);
+            }}
+          >
+            View
+          </button>
         </div>
       ),
     }),
@@ -123,14 +164,18 @@ const Workflow = () => {
     <div className="h-full w-full px-6">
       {/* Tabs */}
       <div className="flex border-b-2 mb-6">
-        <div className="px-4 py-2 text-lg font-bold cursor-pointer">
-          Welcome, {`Chi-Joel`}
+        <div className="px-4 py-2 text-black text-lg font-bold cursor-pointer ">
+          Welcome Chi-Joel
         </div>
+        
       </div>
 
       {/* Filters */}
       <div className="flex gap-8 mb-6">
-        <h3 className="text-xl font-semibold py-2">My Request Orders</h3>
+        <h3 className="text-xl font-semibold py-2">Request Orders</h3>
+        <div className="bg-sky-300 px-4 py-2 text-base rounded-lg">
+          Date Range: Last 30 days
+        </div>
         <div className="flex items-center bg-[#EBEEF3] text-base px-4 py-2 rounded-xl">
           <input
             type="text"
@@ -144,10 +189,12 @@ const Workflow = () => {
 
       {/* Status Cards */}
       <div className="grid grid-cols-3 gap-4 mb-6">
-        <Card title="open" number="2" />
-        <Card title="in Progress" number="2" />
+        <Suspense fallback={<CardsSkeleton />}>
+        <Card title="Open" number="2" />
+        <Card title="In Progress" number="2" />
         <Card title="On Hold" number="0" />
         <Card title="Completed" number="1" />
+        </Suspense>
       </div>
 
       {/* Request Table */}
@@ -155,12 +202,18 @@ const Workflow = () => {
         data={requestData ?? []}
         error={false}
         loading={false}
-        // onRowClick={(rowData) => {
-        //   //  setSingleDisplay(true);
-        // }}
-        columns={columns as Array<ColumnDef<IRequest>>}></Table>
+        columns={columns as Array<ColumnDef<IRequest>>}
+      />
+
+      {/* Modal Component */}
+      {isModalOpen && selectedRequest && (
+        <RequestDetails 
+          request={selectedRequest} 
+          closeModal={() => setModalOpen(false)}
+        />
+      )}
     </div>
   );
 };
 
-export default Workflow;
+export default WorkFlow;

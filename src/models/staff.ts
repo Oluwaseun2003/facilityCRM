@@ -20,3 +20,9 @@ export interface Staff {
     Executive = 'Executive',
     name = "name", 
   }
+
+  export interface Imanagement {
+    id: string,
+    role: StaffRole,
+    department: String;
+  }

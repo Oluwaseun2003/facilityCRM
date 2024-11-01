@@ -5,6 +5,8 @@ import Card from "@/src/components/UI/Cards";
 import { IAudit } from "@/src/interfaces/audit";
 import { getStatusStyle } from "@/src/utils/styles/styles";
 import { type ColumnDef, createColumnHelper } from "@tanstack/react-table";
+import { ReportTableSkeleton } from "@/src/components/UI/skeletons";
+import { Suspense } from "react";
 
 const AuditLogs = () => {
   const [activeTab, setActiveTab] = useState("Audit");
@@ -126,9 +128,13 @@ const AuditLogs = () => {
 
       {/* Conditional Rendering of Tables */}
       {activeTab === "Audit" ? (
+        <Suspense fallback={<ReportTableSkeleton />}>
         <Table data={auditData} error={false} loading={false} columns={columns} />
+        </Suspense>
       ) : (
+        <Suspense fallback={<ReportTableSkeleton />}>
         <Table data={logsData} error={false} loading={false} columns={columns} />
+        </Suspense>  
       )}
     </div>
   );

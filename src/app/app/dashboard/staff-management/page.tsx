@@ -1,16 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import Table from "@/src/components/Tables/Tables";
-import { Staff, StaffRole } from "@/src/models/staff"; // Make sure the import path is correct
+import { Imanagement, Staff, StaffRole } from "@/src/models/staff";
 import { ColumnDef } from "@tanstack/react-table";
-// import StaffDetails from "@/src/modals/StaffModal";
-import StaffDetailsModal from "@/src/modals/StaffModal";
+import { StaffDetailsModal } from "@/src/modals/StaffModal";
+// import StaffDetailsModal from "@/src/modals/StaffModal";
+import ManagementDetailsModal from "@/src/modals/ManagementModal";
 
 const StaffManagementPage = () => {
   const [activeTab, setActiveTab] = useState("Staff");
   const [showModal, setShowModal] = useState(false);
 
-  // Placeholder data for staff
   const staffData: Staff[] = [
     {
       id: "1",
@@ -41,17 +41,40 @@ const StaffManagementPage = () => {
     },
   ];
 
-  // Placeholder data for management (You can replace this with your actual data)
-  const managementData: Staff[] = [
-    // Add management data here...
+  const managementData: Imanagement[] = [
+    {
+      id: "1",
+      role: StaffRole.Executive,
+      department: "Procurement",
+    },
+    {
+      id: "2",
+      role: StaffRole.Executive,
+      department: "Procurement",
+    },
+    {
+      id: "3",
+      role: StaffRole.Executive,
+      department: "Procurement",
+    },
+    {
+      id: "4",
+      role: StaffRole.Executive,
+      department: "Procurement",
+    },
+    {
+      id: "5",
+      role: StaffRole.Executive,
+      department: "Procurement",
+    },
   ];
 
-  // Column definitions for the table
-  const columns: ColumnDef<Staff>[] = [
+  // Staff columns
+  const staffColumns: ColumnDef<Staff>[] = [
     {
       accessorKey: "id",
       header: "S/N",
-      cell: (info) => info.row.index + 1, // or info.getValue() for the actual ID
+      cell: (info) => info.row.index + 1,
     },
     {
       accessorFn: (row: Staff) => `${row.firstName} ${row.lastName}`,
@@ -72,6 +95,35 @@ const StaffManagementPage = () => {
     {
       accessorKey: "branch",
       header: "Branch",
+    },
+    {
+      id: "action",
+      header: "Action",
+      cell: () => (
+        <button
+          className="bg-blue-500 text-white px-3 py-1 rounded-lg"
+          onClick={() => setShowModal(true)}
+        >
+          View
+        </button>
+      ),
+    },
+  ];
+
+  // Management columns
+  const managementColumns: ColumnDef<Imanagement>[] = [
+    {
+      accessorKey: "id",
+      header: "S/N",
+      cell: (info) => info.row.index + 1,
+    },
+    {
+      accessorKey: "department",
+      header: "Department",
+    },
+    {
+      accessorKey: "role",
+      header: "Role",
     },
     {
       id: "action",
@@ -132,22 +184,24 @@ const StaffManagementPage = () => {
 
       {/* Table */}
       {activeTab === "Staff" ? (
-        <Table data={staffData} columns={columns} />
+        <Table data={staffData} columns={staffColumns} />
       ) : (
-        <Table data={managementData} columns={columns} />
+        <Table data={managementData} columns={managementColumns} />
       )}
 
-      {/* Modal for Staff Details */}
-      {showModal && (
+      {/* Modals */}
+      {showModal && activeTab === "Staff" && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg w-1/2">
-            <StaffDetailsModal onClose={() => setShowModal(true)} isOpen={true} />
-            {/* <button
-              className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg"
-              onClick={() => setShowModal(false)}
-            >
-              Close
-            </button> */}
+            <StaffDetailsModal onClose={() => setShowModal(false)} isOpen={true} />
+          </div>
+        </div>
+      )}
+
+      {showModal && activeTab === "Management" && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg w-1/2">
+            <ManagementDetailsModal onClose={() => setShowModal(false)} isOpen={true} />
           </div>
         </div>
       )}
