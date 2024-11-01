@@ -179,7 +179,7 @@ export function IndeterminateCheckbox({
     if (typeof indeterminate === "boolean" && ref.current) {
       ref.current.indeterminate = !rest.checked && indeterminate;
     }
-  }, [ref, indeterminate]);
+  }, [ref, indeterminate, rest.checked]); // Added rest.checked to the dependencies
 
   return (
     <input
@@ -190,6 +190,7 @@ export function IndeterminateCheckbox({
     />
   );
 }
+
 
 export function PaginationControls({
   gotoPage = () => {},
